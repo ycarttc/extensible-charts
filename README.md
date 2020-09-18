@@ -1,2 +1,2 @@
 # extensible-charts
-for Chartio
+for Chartio extensible charts beta
