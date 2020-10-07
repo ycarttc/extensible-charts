@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.16.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.16.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+  </head>
+
+  <body>
+    <div id='vis' style='width: 400px; height: 300px;'></div>
+    <script>
+
+        function receiveMessage(event) {
+          chartio_data = JSON.parse(event.data)
+          my_data = chartio_data.data
+
+          var yourVlSpec = {
+            $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+            description: 'A simple bar chart using data from Chartio.',
+            data: {
+              name: "my_data",
+            },
+            mark: 'bar',
+            encoding: {
+              x: {field: 'a', type: 'ordinal'},
+              y: {field: 'b', type: 'quantitative'}
+            }
+          };
+          vegaEmbed('#vis', yourVlSpec)
+          .then((res) => res.view
+          .renderer('svg')
+          .insert("my_data",  my_data)
+          .run()
+          );;
+        }
+
+        window.addEventListener('message', receiveMessage);
+        //console.log(message)
+
+    </script>
+  </body>
+</html>
