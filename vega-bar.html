@@ -22,7 +22,7 @@
             mark: 'bar',
             encoding: {
               x: {field: 'a', type: 'ordinal'},
-              y: {field: 'b', type: 'quantitative'}
+              y: {field: 'b', type: 'quantitative', axis:{title:'y-axis'}}
             }
           };
           vegaEmbed('#vis', yourVlSpec)
